@@ -1,5 +1,7 @@
 package com.example.board;
 
+import com.example.member.UserDAO;
+import com.example.member.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,9 @@ public class BoardController {
     @Autowired
     BoardDAO boardDAO;
 
+    @Autowired
+    UserDAO userDAO;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
 
@@ -34,6 +39,7 @@ public class BoardController {
     @RequestMapping(value = "/board/list", method = RequestMethod.GET)
     public String boardlist(Model model) {
         model.addAttribute("list", boardDAO.getBoardList());
+//        model.addAttribute("user", userDAO.getUser());
         return "posts";
     }
 
